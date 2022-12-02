@@ -10,13 +10,12 @@ import (
 )
 
 var (
-	current     int = 1
-	elf         map[int]int
-	maxCalories int
-	topThree    [3]elfie
+	current  int = 1
+	elves    map[int]int
+	topThree [3]elf
 )
 
-type elfie struct {
+type elf struct {
 	index    int
 	calories int
 }
@@ -24,7 +23,7 @@ type elfie struct {
 func main() {
 
 	filePath := os.Args[1]
-	elf = make(map[int]int)
+	elves = make(map[int]int)
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -45,11 +44,11 @@ func main() {
 			log.Fatal(err)
 		}
 
-		elf[current] += c
+		elves[current] += c
 
-		if elf[current] > topThree[2].calories {
+		if elves[current] > topThree[2].calories {
 			topThree[2].index = current
-			topThree[2].calories = elf[current]
+			topThree[2].calories = elves[current]
 		}
 		sort.Slice(topThree[:], func(i int, j int) bool { return topThree[i].calories > topThree[j].calories })
 	}

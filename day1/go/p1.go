@@ -10,7 +10,7 @@ import (
 
 var (
 	current     int = 1
-	elf         map[int]int
+	elves       map[int]int
 	maxCalories int
 	maxElf      int
 )
@@ -18,7 +18,7 @@ var (
 func main() {
 
 	filePath := os.Args[1]
-	elf = make(map[int]int)
+	elves = make(map[int]int)
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -39,10 +39,10 @@ func main() {
 			log.Fatal(err)
 		}
 
-		elf[current] += c
+		elves[current] += c
 
-		if maxCalories < elf[current] {
-			maxCalories = elf[current]
+		if maxCalories < elves[current] {
+			maxCalories = elves[current]
 			maxElf = current
 		}
 	}
